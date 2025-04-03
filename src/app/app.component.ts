@@ -14,9 +14,12 @@ import { decrement, increment } from './store/counter.actions';
 export class AppComponent implements OnInit {
   title = 'adv-app-test';
   counter!: Observable<number>;
-  counterTwo!: Observable<number>;
-  private store: Store<{ counter: number; counterTwo: number }> = inject(
-    Store<{ counter: number; counterTwo: number }>
+  // counterTwo!: Observable<number>;
+  // private store: Store<{ counter: number; counterTwo: number }> = inject(
+  //   Store<{ counter: number; counterTwo: number }>
+  // );
+  private store: Store<{ counter: number }> = inject(
+    Store<{ counter: number }>
   );
 
   increment() {
@@ -27,6 +30,6 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.counter = this.store.select('counter');
-    this.counterTwo = this.store.select('counterTwo');
+    // this.counterTwo = this.store.select('counterTwo');
   }
 }

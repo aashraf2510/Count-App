@@ -4,13 +4,13 @@ import { decrement, increment } from './counter.actions';
 const initialState = 0;
 
 export const counterReducer = createReducer(
-  initialState
-  // on(increment, (state, action) => state + action.value),
-  // on(decrement, (state, action) => state - action.value)
+  initialState,
+  on(increment, (state, action) => state + action.value),
+  on(decrement, (state, action) => state - action.value)
 );
 
-export const counterTwoReducer = createReducer(
-  initialState,
-  on(increment, (state, action) => state + action.value * 100),
-  on(decrement, (state, action) => state - action.value * 100)
-);
+// export const counterTwoReducer = createReducer(
+//   initialState,
+//   on(increment, (state, action) => state + action.value * 100),
+//   on(decrement, (state, action) => state - action.value * 100)
+// );
