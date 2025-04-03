@@ -23,10 +23,10 @@ export class AppComponent implements OnInit {
   );
 
   increment() {
-    this.store.dispatch(increment({ value: 1 }));
+    this.store.dispatch(increment({ value: 5 }));
   }
   decrement() {
-    this.store.dispatch(decrement({ value: 1 }));
+    this.store.dispatch(decrement({ value: 5 }));
   }
   ngOnInit() {
     this.counter = this.store.select('counter');
