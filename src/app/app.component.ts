@@ -1,13 +1,32 @@
-import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { decrement, increment } from './store/counter.actions';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AsyncPipe],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'adv-app-test';
+  counter!: Observable<number>;
+  counterTwo!: Observable<number>;
+  private store: Store<{ counter: number; counterTwo: number }> = inject(
+    Store<{ counter: number; counterTwo: number }>
+  );
+
+  increment() {
+    this.store.dispatch(increment({ value: 1 }));
+  }
+  decrement() {
+    this.store.dispatch(decrement({ value: 1 }));
+  }
+  ngOnInit() {
+    this.counter = this.store.select('counter');
+    this.counterTwo = this.store.select('counterTwo');
+  }
 }
