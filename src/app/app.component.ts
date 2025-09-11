@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MathElevateService } from '@ahmed_ashraf_98/math-elevate';
+import { MathElevateService } from 'mathElevate';
 
 @Component({
   selector: 'app-root',
