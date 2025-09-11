@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MathElevateService {
   add(a: string, b: string): number {
+    console.log('add method called with', a, b);
     return parseInt(a) + parseInt(b);
   }
 
