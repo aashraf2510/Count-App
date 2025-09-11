@@ -1,35 +1,28 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { decrement, increment } from './store/counter.actions';
+import { MathElevateService } from '@ahmed_ashraf_98/math-elevate';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AsyncPipe],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   title = 'adv-app-test';
-  counter!: Observable<number>;
-  // counterTwo!: Observable<number>;
-  // private store: Store<{ counter: number; counterTwo: number }> = inject(
-  //   Store<{ counter: number; counterTwo: number }>
-  // );
-  private store: Store<{ counter: number }> = inject(
-    Store<{ counter: number }>
-  );
+  counter: number = 0;
+  private readonly _mathService = inject(MathElevateService);
 
   increment() {
-    this.store.dispatch(increment({ value: 6 }));
+    this.counter = this._mathService.add(
+      this.counter.toString(),
+      (4).toString()
+    );
   }
   decrement() {
-    this.store.dispatch(decrement({ value: 5 }));
+    this.counter = this._mathService.subtruct(this.counter, 1);
   }
   ngOnInit() {
-    this.counter = this.store.select('counter');
-    // this.counterTwo = this.store.select('counterTwo');
+    this.counter = 0;
   }
 }
